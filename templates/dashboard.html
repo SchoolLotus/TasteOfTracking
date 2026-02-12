@@ -1,30 +1,48 @@
 <!DOCTYPE html>
-
-
-<html lang="en">
+<html>
 <head>
-    <meta charset="ITF-8">
-    <title>TasteTracker - Dashboard</title>
+    <title>Dashboard</title>
 </head>
 <body>
 
-    <h1>Welcome to your dashboard</h1>
-    <p>Here you can view your profile.</p>
+<h1>{{ user.username }}'s Dashboard</h1>
 
-    <nav>
+<nav>
     <a href="/">Home</a> |
-
-    {% if logged_in %}
-        <a href="/dashboard">Dashboard</a> |
-        <a href="/add">Add Review</a> |
-        <a href="/logout">Logout</a>
-    {% else %}
-        <a href="/register">Register</a> |
-        <a href="/login">Login</a>
-    {% endif %}
+    <a href="/add">Add Review</a> |
+    <a href="/logout">Logout</a>
 </nav>
 
+<h2>My Reviews</h2>
 
+{% if reviews %}
+    {% for review in reviews %}
+        <hr>
+
+        <h3>{{ review.restaurant_name }}</h3>
+        <p><strong>Cuisine:</strong> {{ review.cuisine_type }}</p>
+        <p><strong>Rating:</strong> {{ review.rating }} / 5</p>
+        <p>{{ review.review_text }}</p>
+
+        <!-- Edit -->
+        <form action="/edit" method="GET" style="display:inline;">
+            <input type="hidden" name="review_id" value="{{ review.review_id }}">
+            <button type="submit">Edit</button>
+        </form>
+
+        <!-- Delete -->
+        <form action="/delete" method="POST" style="display:inline;">
+            <input type="hidden" name="review_id" value="{{ review.review_id }}">
+            <button type="submit" onclick="return confirm('Delete this review?')">
+                Delete
+            </button>
+        </form>
+
+    {% endfor %}
+{% else %}
+    <p>You haven't written any reviews yet.</p>
+{% endif %}
 
 </body>
 </html>
+

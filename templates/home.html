@@ -26,16 +26,22 @@
 
 
 
-    <h2>Recent Reviews</h2>
+<h2>Recent Reviews</h2>
 
 {% for review in reviews %}
     <hr>
+
     <h3>{{ review.restaurant_name }}</h3>
     <p><strong>Cuisine:</strong> {{ review.cuisine_type }}</p>
     <p><strong>Rating:</strong> {{ review.rating }} / 5</p>
-    <p><strong>Review:</strong> {{ review.review_text }}</p>
+    <p>{{ review.review_text }}</p>
     <p><em>By {{ review.author.username }}</em></p>
+
+  
+
 {% endfor %}
+
+
 
 
 </body>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Review</title>
+</head>
+<body>
+
+<h1>Edit Review</h1>
+
+<nav>
+    <a href="/">home</a> |
+    <a href="/dashboard">Dashboard</a> |
+    <a href="/logout">Logout</a>
+</nav>
+
+<form method="POST">
+    <input name="restaurant_name" value="{{ review.restaurant_name }}" required><br><br>
+
+    <input name="cuisine_type" value="{{ review.cuisine_type }}" required><br><br>
+
+    <input type="number" name="rating" min="1" max="5"
+           value="{{ review.rating }}" required><br><br>
+
+    <textarea name="review_text">{{ review.review_text }}</textarea><br><br>
+
+    <button type="submit">Update Review</button>
+</form>
+
+</body>
+</html>
