@@ -11,11 +11,18 @@
     
 
     <nav>
-        <a href="/">Home</a> |
-        <a href="/login">Login</a> |
+    <a href="/">Home</a> |
+
+    {% if logged_in %}
         <a href="/dashboard">Dashboard</a> |
-        <a href="/add">Add Review</a>
-    </nav>
+        <a href="/add">Add Review</a> |
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/register">Register</a> |
+        <a href="/login">Login</a>
+    {% endif %}
+</nav>
+
 
     <form method="post">
         <input name="email" placeholder="enter email" required>

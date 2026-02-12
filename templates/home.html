@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
     <meta charset="ITF-8">
@@ -10,29 +12,31 @@
     <p>Track and review restaurants you've visited.</p>
 
     <nav>
-        <a href="/register">Register</a> |
-        <a href="/login">Login</a> |
-        <a href="/dashboard">Dashboard</a> |
-        <a href="/add">Add Review</a>
-    </nav>
+    <a href="/">Home</a> |
 
-    <hr>
+    {% if logged_in %}
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/add">Add Review</a> |
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/register">Register</a> |
+        <a href="/login">Login</a>
+    {% endif %}
+</nav>
+
+
 
     <h2>Recent Reviews</h2>
 
-    <!-- Example review 1 -->
-    <h3>Mario's Restaurant</h3>
-    <p><strong>Cuisine:</strong> Italian</p>
-    <p><strong>Rating:</strong> 4 / 5</p>
-    <p><strong>Review:</strong> Holy wahoo AND yahoo! Luigi was an awesome host</p>
-
+{% for review in reviews %}
     <hr>
+    <h3>{{ review.restaurant_name }}</h3>
+    <p><strong>Cuisine:</strong> {{ review.cuisine_type }}</p>
+    <p><strong>Rating:</strong> {{ review.rating }} / 5</p>
+    <p><strong>Review:</strong> {{ review.review_text }}</p>
+    <p><em>By {{ review.author.username }}</em></p>
+{% endfor %}
 
-        <!-- Example review 2 -->
-    <h3>Dumpster</h3>
-    <p><strong>Cuisine:</strong> Trash</p>
-    <p><strong>Rating:</strong> 2 / 5</p>
-    <p><strong>Review:</strong> Pretty bad food but i did find a working hair dryer so...</p>
 
 </body>
 </html>

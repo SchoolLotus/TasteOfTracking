@@ -1,21 +1,37 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
     <meta charset="ITF-8">
     <title>TasteTracker - Add Review</title>
 </head>
 <body>
+<h1>Add Review</h1>
+<p>Add a review for any restaurant.</p>
 
-    <h1>Add Review</h1>
-    <p>Add a review for any restaurant.</p>
-
-    <nav>
-        <a href="/">Home</a> |
+<nav>
+    <a href="/">Home</a> |
+    {% if logged_in %}
+        <a href="/dashboard">Dashboard</a> |
+        <a href="/logout">Logout</a>
+    {% else %}
         <a href="/register">Register</a> |
-        <a href="/login">Login</a> |
-        <a href="/dashboard">Dashboard</a>
-    </nav>
+        <a href="/login">Login</a>
+    {% endif %}
+</nav>
 
+<form method="POST">
+    <input name="restaurant_name" placeholder="Restaurant Name" required><br><br>
 
+    <input name="cuisine_type" placeholder="Cuisine Type" required><br><br>
+
+    <input type="number" name="rating" min="1" max="5" placeholder="Rating (1-5)" required><br><br>
+
+    <textarea name="review_text" placeholder="Write your review here"></textarea><br><br>
+
+    <button type="submit">Submit Review</button>
+</form>
 </body>
+
 </html>

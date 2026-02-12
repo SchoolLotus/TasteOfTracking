@@ -1,4 +1,6 @@
 <!DOCTYPE html>
+
+
 <html lang="en">
 <head>
     <meta charset="ITF-8">
@@ -10,11 +12,18 @@
     <p>Login with your email and password.</p>
 
     <nav>
-        <a href="/">Home</a> |
-        <a href="/register">Register</a> |
+    <a href="/">Home</a> |
+
+    {% if logged_in %}
         <a href="/dashboard">Dashboard</a> |
-        <a href="/add">Add Review</a>
-    </nav>
+        <a href="/add">Add Review</a> |
+        <a href="/logout">Logout</a>
+    {% else %}
+        <a href="/register">Register</a> |
+        <a href="/login">Login</a>
+    {% endif %}
+</nav>
+
 
 <form method="post">
         <input name="email" placeholder="enter email" required>
